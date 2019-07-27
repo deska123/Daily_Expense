@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Request;
+
+class DailyExpenseAppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $page = '';
+
+        if(Request::segment(1) == 'vehicle_type') {
+          $page = 'vehicle_type';
+        }
+
+        view()->share('page', $page);
+    }
+}
