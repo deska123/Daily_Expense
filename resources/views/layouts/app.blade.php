@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Daily Expense">
+    <meta name="keywords" content="Daily Expense">
+    <meta name="author" content="DPK">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,12 +14,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link href="{{ asset('bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -33,7 +40,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                      @if (Auth::check())
+                      <li class="nav-item">
+                        @if (!empty($page) && $page == 'vehicle_type')
+                          <a class="nav-link active" href="{{ url('vehicle_type') }}">Vehicle Type</a>
+                        @else
+                          <a class="nav-link" href="{{ url('vehicle_type') }}">Vehicle Type</a>
+                        @endif
+                      </li>
+                      @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

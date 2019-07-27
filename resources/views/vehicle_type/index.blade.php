@@ -1,6 +1,6 @@
 @extends('../template')
 
-@section('main')
+@section('content')
   <br><br><br>
   <div id="vehicleType">
     <h2>Vehicle Type</h2>

@@ -10,13 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('verify', function() {
+  return view('auth/verify');
+});
 
-Route::resource('vehicle_type', 'VehicleTypeController')->middleware('verified');;
+Route::get('vehicle_type', 'VehicleTypeController@index')->middleware('verified');
+Route::get('vehicle_type/create', 'VehicleTypeController@create')->middleware('verified');
+Route::get('vehicle_type/{vehicle_type}', 'VehicleTypeController@show')->middleware('verified');
+Route::post('vehicle_type/store', 'VehicleTypeController@store')->middleware('verified');
+Route::get('vehicle_type/{vehicle_type}/edit', 'VehicleTypeController@edit')->middleware('verified');
+Route::patch('vehicle_type/{vehicle_type}', 'VehicleTypeController@update')->middleware('verified');
+Route::delete('vehicle_type/{vehicle_type}', 'VehicleTypeController@destroy')->middleware('verified');
