@@ -10,6 +10,13 @@
         <a class="nav-link" href="{{url('vehicle_type')}}">Vehicle Type</a>
       @endif
     </li>
+    <li class="nav-item">
+      @if (!empty($page) && $page == 'transportation')
+        <a class="nav-link active" href="{{url('transportation')}}">Transportation</a>
+      @else
+        <a class="nav-link" href="{{url('transportation')}}">Transportation</a>
+      @endif
+    </li>
   </ul>
   <ul class="navbar-nav ml-auto">
     <!-- Authentication Links -->

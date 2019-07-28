@@ -17,6 +17,8 @@ Route::get('verify', function() {
   return view('auth/verify');
 });
 
+Route::get('transportation', 'TransportationController@index')->middleware('verified');
+
 Route::get('vehicle_type', 'VehicleTypeController@index')->middleware('verified');
 Route::get('vehicle_type/create', 'VehicleTypeController@create')->middleware('verified');
 Route::get('vehicle_type/{vehicle_type}', 'VehicleTypeController@show')->middleware('verified');
