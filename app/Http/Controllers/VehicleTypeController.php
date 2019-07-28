@@ -16,7 +16,7 @@ class VehicleTypeController extends Controller
     public function index()
     {
       $vehicleType_list = Vehicle_Type::orderBy('id', 'asc')->paginate(5);
-      $size = $vehicleType_list->count();
+      $size = Vehicle_Type::all()->count();
       $data = [
         'list' => $vehicleType_list,
         'size' => $size

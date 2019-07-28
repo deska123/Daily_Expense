@@ -5,7 +5,7 @@
   <div id="vehicleType">
     <h2>Vehicle Type</h2>
     @include('_partial/flash_message')
-    @if (!empty($data['list']))
+    @if (!empty($data['size']) && $data['size'] > 0)
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
@@ -15,11 +15,17 @@
           </tr>
         </thead>
         <tbody>
-          <?php $a = 1 ?>
+          <?php
+            if($data['list']->onFirstPage()) {
+              $a = 1;
+            } else {
+              $a = (($data['list']->currentPage() - 1) * $data['list']->perPage()) + 1;
+            }
+          ?>
           <?php foreach($data['list'] as $vehicleType): ?>
           <tr>
-            <td>{{$a}}</td>
-            <td>{{$vehicleType -> type}}</td>
+            <td>{{ $a }}</td>
+            <td>{{ $vehicleType->type }}</td>
             <td>
               <a href="{{url('vehicle_type/' . $vehicleType -> id)}}" class="btn btn-secondary btn-md">Details</a>
               <a href="{{url('vehicle_type/' . $vehicleType -> id . '/edit')}}" class="btn btn-info btn-md">Edit</a>
@@ -35,7 +41,7 @@
                     <p>Are you sure you want to delete this data ?</p>
                   </div>
                   <div class="modal-footer">
-                      <form action="{{url('vehicle_type/' . $vehicleType -> id)}}" method="POST">
+                      <form action="{{ url('vehicle_type/' . $vehicleType -> id) }}" method="POST">
                       @method('DELETE')
                       @csrf
                       <button type="submit" class="btn btn-primary">Yes</button>
@@ -54,10 +60,14 @@
       <p>No data to be displayed !</p>
     @endif
 
-    @if (!empty($data['size']))
-      <h4>Number of rows : {{ $data['size'] }}</h4>
-    @else
-      <h4>Number of rows : 0</h4>
+    <div class="row">
+     <div class="col-sm-4"></div>
+     <div class="col-sm-4">{{ $data['list'] -> links() }}</div>
+     <div class="col-sm-4"></div>
+    </div>
+
+    @if (!empty($data['size']) && $data['size'] > 0)
+      <h4>Total Number of Data : {{ $data['size'] }}</h4>
     @endif
 
     <a href="{{url('vehicle_type/create')}}" class="btn btn-link btn-md">Create New Vehicle Type</a>
