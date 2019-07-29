@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Vehicle_Type;
+use App\User;
 use App\Http\Requests\VehicleTypeRequest;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class VehicleTypeController extends Controller
@@ -44,8 +46,8 @@ class VehicleTypeController extends Controller
     {
       $vehicleType = new Vehicle_Type;
       $vehicleType->type = $request->type;
-      $vehicleType->created_by = 'Creating User';
-      $vehicleType->updated_by = 'Creating User';
+      $vehicleType->created_by = Auth::id();
+      $vehicleType->updated_by = Auth::id();
       $vehicleType->save();
 
       Session::flash('flash_message', 'Vehicle Type Data : ' . $request->type . ' successfully created');
@@ -84,7 +86,7 @@ class VehicleTypeController extends Controller
     public function update(VehicleTypeRequest $request, Vehicle_Type $vehicle_type)
     {
       $vehicle_type->type = $request->type;
-      $vehicle_type->updated_by = 'Editing User';
+      $vehicle_type->updated_by = Auth::id();
       $vehicle_type->save();
 
       Session::flash('flash_message', 'Vehicle Type Data : ' . $request->type . ' successfully edited');
