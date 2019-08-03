@@ -59,12 +59,12 @@ class TransportationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Transportation $transportation
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transportation $transportation)
     {
-        //
+        return view('transportation/show', compact('transportation'));
     }
 
     /**
