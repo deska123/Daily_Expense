@@ -42,7 +42,7 @@ class TransportationController extends Controller
      */
     public function create()
     {
-        //
+        return view('transportation/create'); 
     }
 
     /**

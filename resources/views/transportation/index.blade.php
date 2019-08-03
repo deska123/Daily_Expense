@@ -49,4 +49,6 @@
    <div class="col-sm-4">{{ $data['list'] -> links() }}</div>
    <div class="col-sm-4"></div>
   </div>
+
+  <a href="{{ url('transportation/create') }}" class="btn btn-link btn-md">Create New Transportation</a>
 @endsection

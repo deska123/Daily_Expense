@@ -70,6 +70,6 @@
       <h4>Total Number of Data : {{ $data['size'] }}</h4>
     @endif
 
-    <a href="{{url('vehicle_type/create')}}" class="btn btn-link btn-md">Create New Vehicle Type</a>
+    <a href="{{ url('vehicle_type/create') }}" class="btn btn-link btn-md">Create New Vehicle Type</a>
   </div>
 @stop
