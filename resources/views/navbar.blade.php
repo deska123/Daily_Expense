@@ -3,20 +3,22 @@
       {{ config('app.name', 'Laravel') }}
   </a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      @if (!empty($page) && $page == 'vehicle_type')
-        <a class="nav-link active" href="{{url('vehicle_type')}}">Vehicle Type</a>
-      @else
-        <a class="nav-link" href="{{url('vehicle_type')}}">Vehicle Type</a>
-      @endif
-    </li>
-    <li class="nav-item">
-      @if (!empty($page) && $page == 'transportation')
-        <a class="nav-link active" href="{{url('transportation')}}">Transportation</a>
-      @else
-        <a class="nav-link" href="{{url('transportation')}}">Transportation</a>
-      @endif
-    </li>
+    @if (!is_null(Auth::user()->email_verified_at) && Auth::user()->is_approved == 1)
+      <li class="nav-item">
+        @if (!empty($page) && $page == 'vehicle_type')
+          <a class="nav-link active" href="{{url('vehicle_type')}}">Vehicle Type</a>
+        @else
+          <a class="nav-link" href="{{url('vehicle_type')}}">Vehicle Type</a>
+        @endif
+      </li>
+      <li class="nav-item">
+        @if (!empty($page) && $page == 'transportation')
+          <a class="nav-link active" href="{{url('transportation')}}">Transportation</a>
+        @else
+          <a class="nav-link" href="{{url('transportation')}}">Transportation</a>
+        @endif
+      </li>
+    @endif
   </ul>
   <ul class="navbar-nav ml-auto">
     <!-- Authentication Links -->
@@ -30,6 +32,15 @@
             </li>
         @endif
     @else
+        @if (Auth::user()->level == 'admin')
+          <li class="nav-item">
+            @if (!empty($page) && $page == 'users')
+              <a class="nav-link active" href="{{url('users')}}">Users</a>
+            @else
+              <a class="nav-link" href="{{url('users')}}">Users</a>
+            @endif
+          </li>
+        @endif
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }} <span class="caret"></span>

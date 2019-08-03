@@ -3,13 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Vehicle_Type;
-use App\User;
 use App\Http\Requests\VehicleTypeRequest;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
 class VehicleTypeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('approved');
+        $this->middleware('auth');
+        $this->middleware('verified');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -89,7 +100,7 @@ class VehicleTypeController extends Controller
       $vehicle_type->updated_by = Auth::id();
       $vehicle_type->save();
 
-      Session::flash('flash_message', 'Vehicle Type Data : ' . $request->type . ' successfully edited');
+      Session::flash('flash_message', 'Vehicle Type Data : ' . $vehicle_type->type . ' successfully edited');
       return redirect('vehicle_type');
     }
 
