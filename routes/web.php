@@ -17,12 +17,9 @@ Route::get('verify', function() {
   return view('auth/verify');
 });
 
-Route::get('transportation', 'TransportationController@index')->middleware('verified');
+Route::resource('transportation', 'TransportationController');
+Route::resource('vehicle_type', 'VehicleTypeController');
 
-Route::get('vehicle_type', 'VehicleTypeController@index')->middleware('verified');
-Route::get('vehicle_type/create', 'VehicleTypeController@create')->middleware('verified');
-Route::get('vehicle_type/{vehicle_type}', 'VehicleTypeController@show')->middleware('verified');
-Route::post('vehicle_type/store', 'VehicleTypeController@store')->middleware('verified');
-Route::get('vehicle_type/{vehicle_type}/edit', 'VehicleTypeController@edit')->middleware('verified');
-Route::patch('vehicle_type/{vehicle_type}', 'VehicleTypeController@update')->middleware('verified');
-Route::delete('vehicle_type/{vehicle_type}', 'VehicleTypeController@destroy')->middleware('verified');
+Route::get('users', 'UsersController@index');
+Route::get('users/{users}', 'UsersController@show');
+Route::post('users/{users}/approve', 'UsersController@change_approval');

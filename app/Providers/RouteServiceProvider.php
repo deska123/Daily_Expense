@@ -28,6 +28,10 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('vehicle_type', function($vehicle_type) {
           return \App\Vehicle_Type::findOrFail($vehicle_type);
         });
+
+        Route::bind('users', function($users) {
+          return \App\User::findOrFail($users);
+        });
     }
 
     /**
