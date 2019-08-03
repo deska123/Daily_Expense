@@ -9,4 +9,4 @@
   @endif
 </div>
 <button type="submit" class="btn btn-primary">{{$submitButtonType}}</button>
-<a href="{{url('vehicle_type')}}" class="btn btn-danger btn-md">Cancel</a>
+<a href="{{ url('vehicle_type') }}" class="btn btn-danger btn-md">Cancel</a>
