@@ -25,6 +25,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Route::bind('transportation', function($transportation) {
+          return \App\Transportation::findOrFail($transportation);
+        });
+
         Route::bind('vehicle_type', function($vehicle_type) {
           return \App\Vehicle_Type::findOrFail($vehicle_type);
         });
