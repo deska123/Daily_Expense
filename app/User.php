@@ -36,4 +36,26 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+   * Get the Created At with specified date format
+   *
+   * @param integer
+   * @return string
+   */
+    public function getCreatedAtAttribute($value)
+    {
+        return date("d M Y H:i:s", strtotime($value));
+    }
+
+    /**
+  	 * Get the Updated At with specified date format
+  	 *
+  	 * @param integer
+  	 * @return string
+  	 */
+      public function getUpdatedAtAttribute($value)
+    	{
+        	return date("d M Y H:i:s", strtotime($value));
+    	}
 }
