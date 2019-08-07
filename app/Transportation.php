@@ -10,6 +10,13 @@ class Transportation extends Model
     protected $table = 'transportation';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['vehicleTypeId', 'origin', 'destination', 'code', 'fleet', 'remark'];
+
+    /**
      * Get the Vehicle Type that owns the Transportation.
      */
     public function vehicleType()

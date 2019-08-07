@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Transportation;
+use App\Http\Requests\TransportationRequest;
 use Illuminate\Http\Request;
+use Session;
 
 class TransportationController extends Controller
 {
@@ -42,7 +44,7 @@ class TransportationController extends Controller
      */
     public function create()
     {
-        return view('transportation/create'); 
+        return view('transportation/create');
     }
 
     /**
@@ -51,9 +53,11 @@ class TransportationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransportationRequest $transportationRequest)
     {
-        //
+      Transportation::create($transportationRequest->all());
+      Session::flash('flash_message', 'Transportation Data successfully created');
+      return redirect('transportation');
     }
 
     /**
