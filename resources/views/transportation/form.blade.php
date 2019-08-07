@@ -52,5 +52,11 @@
   <label for="type">Remark</label>
   <input type="text" class="form-control" id="remark" name="remark" placeholder="Enter Remark" value="{{$formType == 'Edit' ? $transportation->remark : ''}}">
 </div>
+@if ($formType == 'Edit')
+  <input type="hidden" id="updated_by" name="updated_by" value="{{ Auth::id() }}">
+@else
+  <input type="hidden" id="created_by" name="created_by" value="{{ Auth::id() }}">
+  <input type="hidden" id="updated_by" name="updated_by" value="{{ Auth::id() }}">
+@endif
 <button type="submit" class="btn btn-primary">{{$submitButtonType}}</button>
 <a href="{{ url('transportation') }}" class="btn btn-danger btn-md">Cancel</a>

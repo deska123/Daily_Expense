@@ -7,6 +7,13 @@
     <strong>{{$errors->first('type')}}</strong>
   </div>
   @endif
+
+  @if ($formType == 'Edit')
+    <input type="hidden" id="updated_by" name="updated_by" value="{{ Auth::id() }}">
+  @else
+    <input type="hidden" id="created_by" name="created_by" value="{{ Auth::id() }}">
+    <input type="hidden" id="updated_by" name="updated_by" value="{{ Auth::id() }}">
+  @endif
 </div>
 <button type="submit" class="btn btn-primary">{{$submitButtonType}}</button>
 <a href="{{ url('vehicle_type') }}" class="btn btn-danger btn-md">Cancel</a>
