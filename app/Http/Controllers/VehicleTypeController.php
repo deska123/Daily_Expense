@@ -55,12 +55,7 @@ class VehicleTypeController extends Controller
      */
     public function store(VehicleTypeRequest $request)
     {
-      $vehicleType = new Vehicle_Type;
-      $vehicleType->type = $request->type;
-      $vehicleType->created_by = Auth::id();
-      $vehicleType->updated_by = Auth::id();
-      $vehicleType->save();
-
+      Vehicle_Type::create($request->all());
       Session::flash('flash_message', 'Vehicle Type Data : ' . $request->type . ' successfully created');
       return redirect('vehicle_type');
     }
@@ -96,11 +91,9 @@ class VehicleTypeController extends Controller
      */
     public function update(VehicleTypeRequest $request, Vehicle_Type $vehicle_type)
     {
-      $vehicle_type->type = $request->type;
-      $vehicle_type->updated_by = Auth::id();
+      $vehicle_type->fill($request->except(['_token', '_method']));
       $vehicle_type->save();
-
-      Session::flash('flash_message', 'Vehicle Type Data : ' . $vehicle_type->type . ' successfully edited');
+      Session::flash('flash_message', 'Vehicle Type Data : ' . $request->type . ' successfully edited');
       return redirect('vehicle_type');
     }
 
