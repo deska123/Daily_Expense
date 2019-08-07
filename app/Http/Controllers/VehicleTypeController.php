@@ -106,7 +106,6 @@ class VehicleTypeController extends Controller
     public function destroy(Vehicle_Type $vehicle_type)
     {
         $vehicle_type->delete();
-
         Session::flash('flash_message', 'Vehicle Type Data successfully deleted');
         return redirect('vehicle_type');
     }
