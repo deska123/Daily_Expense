@@ -10,6 +10,13 @@ class Vehicle_Type extends Model
     protected $table = 'vehicle_type';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['type', 'created_by', 'updated_by'];
+
+    /**
      * Get the transportation data for a vehicle type
      */
     public function transportation()
