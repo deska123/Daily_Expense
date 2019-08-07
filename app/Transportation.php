@@ -14,7 +14,7 @@ class Transportation extends Model
      *
      * @var array
      */
-    protected $fillable = ['vehicleTypeId', 'origin', 'destination', 'code', 'fleet', 'remark'];
+    protected $fillable = ['vehicleTypeId', 'origin', 'destination', 'code', 'fleet', 'remark', 'created_by', 'updated_by'];
 
     /**
      * Get the Vehicle Type that owns the Transportation.
