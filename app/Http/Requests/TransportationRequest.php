@@ -13,7 +13,7 @@ class TransportationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class TransportationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'vehicleTypeId' => 'required',
+            'origin' => 'required|string|max:150',
+            'destination' => 'required|string|max:150',
+            'fleet' => 'required|string|max:180'
         ];
     }
 }
