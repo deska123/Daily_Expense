@@ -16,9 +16,9 @@ class TransportationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('approved');
-        $this->middleware('auth');
-        $this->middleware('verified');
+      $this->middleware('approved');
+      $this->middleware('auth');
+      $this->middleware('verified');
     }
 
     /**
@@ -68,7 +68,7 @@ class TransportationController extends Controller
      */
     public function show(Transportation $transportation)
     {
-        return view('transportation/show', compact('transportation'));
+      return view('transportation/show', compact('transportation'));
     }
 
     /**
@@ -97,11 +97,13 @@ class TransportationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Transportation $transportation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transportation $transportation)
     {
-        //
+      $transportation->delete();
+      Session::flash('flash_message', 'Transportation Data successfully deleted');
+      return redirect('transportation');
     }
 }
