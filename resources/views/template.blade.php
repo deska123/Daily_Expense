@@ -10,10 +10,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('bootstrap-4.3.1-dist/js/bootstrap.min.js') }}"></script>
 
     <!-- Styles -->
     <link href="{{ asset('bootstrap-4.3.1-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
   </head>
   <body>
     <div class="container-fluid">

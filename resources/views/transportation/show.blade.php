@@ -57,6 +57,6 @@
     @else
       <p>No data to be displayed !</p>
     @endif
-    <a href="{{ url('transportation') }}" class="btn btn-danger btn-md">Back to Transportation List</a>
+    <a id="backToTransportationListButton" href="{{ url('transportation') }}" class="btn btn-danger btn-md">Back to Transportation List</a>
   </div>
 @endsection

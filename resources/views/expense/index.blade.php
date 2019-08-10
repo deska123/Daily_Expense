@@ -13,6 +13,7 @@
             <th>Category</th>
             <th>Cost Total</th>
             <th>Activity Date Time</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
               @endif
               <td>{{ $expense->costTotal }}</td>
               <td>{{ $expense->activityDateTime }}</td>
+              <td>
+                <a href="{{url('expense/' . $expense->id)}}" class="btn btn-secondary btn-md">Details</a>
+              </td>
             </tr>
             @php $a++; @endphp
           @endforeach
