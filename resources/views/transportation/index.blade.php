@@ -34,6 +34,7 @@
           <td>{{ $transportation->fleet }}</td>
           <td>
             <a href="{{ url('transportation/' . $transportation->id) }}" class="btn btn-secondary btn-md">Details</a>
+            <a href="{{url('transportation/' . $transportation->id . '/edit')}}" class="btn btn-info btn-md">Edit</a>
             <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteTransportationModal_{{ $transportation->id }}">Delete</button>
           </td>
           <div id="deleteTransportationModal_{{ $transportation->id }}" class="modal fade" role="dialog">

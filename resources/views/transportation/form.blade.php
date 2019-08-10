@@ -4,7 +4,7 @@
     @if (!empty($vehicle_type_list))
       @foreach ($vehicle_type_list as $vehicle_type_opt)
         @if ($formType == 'Edit')
-          @if ($vehicle_type_opt->id == $vehicle_type->id)
+          @if ($vehicle_type_opt->id == $transportation->vehicleTypeId)
             <option value="{{ $vehicle_type_opt->id }}" selected>{{ $vehicle_type_opt->type }}</option>
           @endif
         @else

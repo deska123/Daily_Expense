@@ -74,24 +74,27 @@ class TransportationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Transportation $transportation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Transportation $transportation)
     {
-        //
+      return view('transportation/edit', compact('transportation'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\TransportationRequest  $request
+     * @param  Transportation  $transportation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransportationRequest $request, Transportation $transportation)
     {
-        //
+      $transportation->fill($request->except(['_token', '_method']));
+      $transportation->save();
+      Session::flash('flash_message', 'Transportation Data successfully edited');
+      return redirect('transportation');
     }
 
     /**
