@@ -3,10 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
-use Illuminate\Http\Request;
+use App\Http\Requests\ExpenseRequest;
+use Session;
 
 class ExpenseController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('approved');
+        $this->middleware('auth');
+        $this->middleware('verified');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,18 +43,20 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        //
+      return view('expense/create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ExpenseRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExpenseRequest $request)
     {
-        //
+      Expense::create($request->all());
+      Session::flash('flash_message', 'Expense Data successfully created');
+      return redirect('expense');
     }
 
     /**

@@ -57,5 +57,7 @@
     @if (!empty($data['size']) && $data['size'] > 0)
       <h4>Total Number of Data : {{ $data['size'] }}</h4>
     @endif
+
+    <a href="{{ url('expense/create') }}" class="btn btn-link btn-md">Create New Expense</a>
   </div>
 @stop
