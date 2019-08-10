@@ -17,6 +17,7 @@ Route::get('verify', function() {
   return view('auth/verify');
 });
 
+Route::resource('expense', 'ExpenseController');
 Route::resource('transportation', 'TransportationController');
 Route::resource('vehicle_type', 'VehicleTypeController');
 

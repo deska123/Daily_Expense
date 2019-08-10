@@ -26,6 +26,10 @@ class DailyExpenseAppServiceProvider extends ServiceProvider
     {
         $page = '';
 
+        if(Request::segment(1) == 'expense') {
+          $page = 'expense';
+        }
+
         if(Request::segment(1) == 'transportation') {
           $page = 'transportation';
         }
