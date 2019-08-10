@@ -18,6 +18,13 @@
           <a class="nav-link" href="{{url('transportation')}}">Transportation</a>
         @endif
       </li>
+      <li class="nav-item">
+        @if (!empty($page) && $page == 'expense')
+          <a class="nav-link active" href="{{url('expense')}}">Expense</a>
+        @else
+          <a class="nav-link" href="{{url('expense')}}">Expense</a>
+        @endif
+      </li>
     @endif
   </ul>
   <ul class="navbar-nav ml-auto">
