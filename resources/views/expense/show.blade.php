@@ -38,9 +38,7 @@
         </tr>
         <tr>
           <th>Receipt</th>
-
             <td>
-              <!--<img class="img-fluid" src="{{ asset($expense->receipt) }}" alt="Receipt for {{ $expense->id }}" width="600" height="500">-->
               @if (isset($expense->receipt))
                 <a href="{{ asset($expense->receipt) }}" target="_blank" class="btn btn-warning btn-md">See Receipt File</a>
               @endif
