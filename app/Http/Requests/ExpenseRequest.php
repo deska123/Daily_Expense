@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ExpenseRequest extends FormRequest
 {
@@ -24,8 +26,12 @@ class ExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'costTotal' => 'required|integer',
-            'activityDateTime' => 'required'
+            'category'          => 'required',
+            'transportationId'  => Rule::requiredIf(Request::input('category') == 'Transportation'),
+            'costTotal'         => 'required|integer',
+            'activityDateTime'  => 'required',
+            'receipt'           => 'sometimes|nullable|mimes:jpeg,jpg,png,pdf',
+            'remark'            => 'nullable'
         ];
     }
 }

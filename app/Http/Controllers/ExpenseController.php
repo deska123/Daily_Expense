@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Expense;
 use App\Http\Requests\ExpenseRequest;
 use Session;
+use Storage;
 
 class ExpenseController extends Controller
 {
@@ -54,7 +55,38 @@ class ExpenseController extends Controller
      */
     public function store(ExpenseRequest $request)
     {
-      Expense::create($request->all());
+      //Expense::create($request->all());
+      //Session::flash('flash_message', 'Expense Data successfully created');
+      //return redirect('expense')
+      $expense = new Expense;
+      switch($request->input('category')) {
+        case 'Transportation' :
+          $expense->transportationFlag = true;
+          $expense->transportationId = $request->transportationId;
+          break;
+        case 'Shopping' :
+          break;
+        case 'Others' :
+          break;
+      }
+      $expense->costTotal = $request->costTotal;
+      $expense->activityDateTime = $request->activityDateTime;
+      if($request->hasFile('receipt')) {
+        $receipt = $request->file('receipt');
+        $extension = $receipt->getClientOriginalExtension();
+        if($request->file('receipt')->isValid()) {
+          $receipt_name = date('YmdHis') . ".$extension";
+          $upload_path = 'upload/receipts';
+          $request->file('receipt')->move($upload_path, $receipt_name);
+          $expense->receipt = $upload_path . '/' . $receipt_name;
+        }
+      }
+      if($request->filled('remark')) {
+        $expense->remark = $request->remark;
+      }
+      $expense->created_by = $request->created_by;
+      $expense->updated_by = $request->updated_by;
+      $expense->save();
       Session::flash('flash_message', 'Expense Data successfully created');
       return redirect('expense');
     }

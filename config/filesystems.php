@@ -42,6 +42,10 @@ return [
     */
 
     'disks' => [
+        'receipt' => [
+            'driver' => 'local',
+            'root' => public_path('upload/receipts'),
+        ],
 
         'local' => [
             'driver' => 'local',

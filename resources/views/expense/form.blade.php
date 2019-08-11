@@ -11,8 +11,20 @@
       @endforeach
     @endif
   </select>
+  @error('category')
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @enderror
+  @error('transportationId')
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @enderror
 </div>
-<div id="transportation" class="form-group">
+<div id="transportationSection" class="form-group">
   <span>Transportation</span>
   <table class="table table-bordered">
     <thead>
@@ -43,7 +55,7 @@
     </tbody>
   </table>
 </div>
-<div id="others" class="form-group">
+<div id="othersSection" class="form-group">
   <label for="othersId">Others</label>
   <select class="form-control" id="othersId" name="othersId">
     @if (!empty($others_list))
@@ -60,22 +72,32 @@
 <div class="form-group">
   <label for="type">Cost Total</label>
   <input type="number" class="form-control" id="costTotal" placeholder="Enter Cost Total" name="costTotal" value="{{$formType == 'Edit' ? $expense->costTotal : ''}}">
-  @if ($errors->has('costTotal'))
-  <div class="alert alert-danger alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{{$errors->first('costTotal')}}</strong>
-  </div>
-  @endif
+  @error('costTotal')
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @enderror
 </div>
 <div class="form-group">
   <label for="type">Activity Date Time</label>
-  <input type="datetime-local" class="form-control" id="activityDateTime" placeholder="Enter Activity Date Time" name="activityDateTime" value="{{$formType == 'Edit' ? $expense->activityDateTime : ''}}">
-  @if ($errors->has('activityDateTime'))
-  <div class="alert alert-danger alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>{{$errors->first('activityDateTime')}}</strong>
-  </div>
-  @endif
+  <input type="datetime-local" class="form-control" id="activityDateTime" placeholder="Enter Activity Date Time" name="activityDateTime">
+  @error('activityDateTime')
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @enderror
+</div>
+<div class="form-group">
+  <label for="receipt">Receipt</label>
+  <input type="file" class="form-control" id="receipt" name="receipt">
+  @error('receipt')
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @enderror
 </div>
 <div class="form-group">
   <label for="remark">Remark</label>
