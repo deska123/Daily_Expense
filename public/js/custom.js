@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  $("#others").hide();
+  $("#category").val("");
+  $("#transportationSection").hide();
+  $("#othersSection").hide();
 
   $("#showDetailsInExpense").click(function(){
     $('#expenseDetailIframe').contents().find('#mainNavbar').hide();
@@ -9,11 +11,11 @@ $(document).ready(function(){
   $("#category").change(function(){
     var category = $("#category").val();
     if(category == "Transportation") {
-      $("#transportation").show();
-      $("#others").hide();
+      $("#transportationSection").show();
+      $("#othersSection").hide();
     } else if(category == "Others") {
-      $("#transportation").hide();
-      $("#others").show();
+      $("#transportationSection").hide();
+      $("#othersSection").show();
     }
   })
 });

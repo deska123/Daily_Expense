@@ -27,6 +27,7 @@ class DailyExpenseFormServiceProvider extends ServiceProvider
     {
       view()->composer('expense/form', function($view){
         $categoryCollection = [
+          '',
           'Transportation',
           'Shopping',
           'Others'
