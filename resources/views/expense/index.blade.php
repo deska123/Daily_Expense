@@ -37,8 +37,29 @@
               <td>{{ $expense->costTotal }}</td>
               <td>{{ $expense->activityDateTime }}</td>
               <td>
-                <a href="{{url('expense/' . $expense->id)}}" class="btn btn-secondary btn-md">Details</a>
+                <a href="{{ url('expense/' . $expense->id) }}" class="btn btn-secondary btn-md">Details</a>
+                <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteExpenseModal_{{ $expense->id }}">Delete</button>
               </td>
+              <div id="deleteExpenseModal_{{ $expense->id }}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Delete Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete this data ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ url('expense/' . $expense->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                      </form>
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">No</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </tr>
             @php $a++; @endphp
           @endforeach

@@ -128,11 +128,13 @@ class ExpenseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Expense $expense)
     {
-        //
+      $expense->delete();
+      Session::flash('flash_message', 'Expense Data successfully deleted');
+      return redirect('expense');
     }
 }
