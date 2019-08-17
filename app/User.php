@@ -38,6 +38,17 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+   * Get the Email Verified At with specified date format
+   *
+   * @param integer
+   * @return string
+   */
+    public function getEmailVerifiedAtAttribute($value)
+    {
+        return date("d F Y H:i:s", strtotime($value));
+    }
+
+    /**
    * Get the Created At with specified date format
    *
    * @param integer
@@ -45,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
    */
     public function getCreatedAtAttribute($value)
     {
-        return date("d M Y H:i:s", strtotime($value));
+        return date("d F Y H:i:s", strtotime($value));
     }
 
     /**
@@ -56,6 +67,6 @@ class User extends Authenticatable implements MustVerifyEmail
   	 */
       public function getUpdatedAtAttribute($value)
     	{
-        	return date("d M Y H:i:s", strtotime($value));
+        	return date("d F Y H:i:s", strtotime($value));
     	}
 }

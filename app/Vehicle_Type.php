@@ -32,7 +32,7 @@ class Vehicle_Type extends Model
 	 */
     public function getCreatedAtAttribute($value)
   	{
-      	return date("d M Y H:i:s", strtotime($value));
+      	return date("d F Y H:i:s", strtotime($value));
   	}
 
     /**
@@ -53,7 +53,7 @@ class Vehicle_Type extends Model
 	 */
     public function getUpdatedAtAttribute($value)
   	{
-      	return date("d M Y H:i:s", strtotime($value));
+      	return date("d F Y H:i:s", strtotime($value));
   	}
 
     /**

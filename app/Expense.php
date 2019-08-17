@@ -9,15 +9,26 @@ class Expense extends Model
 {
     protected $table = 'expense';
 
+  /**
+	 * Get the Activity Date with specified date format
+	 *
+	 * @param integer
+	 * @return string
+	 */
+    public function getActivityDateAttribute($value)
+  	{
+      	return date("d F Y", strtotime($value));
+  	}
+
     /**
-  	 * Get the Activity Date Time with specified date format
+  	 * Get the Activity Time with specified date format
   	 *
   	 * @param integer
   	 * @return string
   	 */
-      public function getActivityDateTimeAttribute($value)
+      public function getActivityTimeAttribute($value)
     	{
-        	return date("d M Y H:i:s", strtotime($value));
+        	return date("H:i:s", strtotime($value));
     	}
 
     /**
@@ -28,7 +39,7 @@ class Expense extends Model
 	 */
     public function getCreatedAtAttribute($value)
   	{
-      	return date("d M Y H:i:s", strtotime($value));
+      	return date("d F Y H:i:s", strtotime($value));
   	}
 
     /**
@@ -49,7 +60,7 @@ class Expense extends Model
 	 */
     public function getUpdatedAtAttribute($value)
   	{
-      	return date("d M Y H:i:s", strtotime($value));
+      	return date("d F Y H:i:s", strtotime($value));
   	}
 
     /**
