@@ -29,7 +29,8 @@ class ExpenseRequest extends FormRequest
             'category'          => 'required',
             'transportationId'  => Rule::requiredIf(Request::input('category') == 'Transportation'),
             'costTotal'         => 'required|integer',
-            'activityDateTime'  => 'required',
+            'activityDate'      => 'required',
+            'activityTime'      => 'required',
             'receipt'           => 'sometimes|nullable|mimes:jpeg,jpg,png,pdf',
             'remark'            => 'nullable'
         ];

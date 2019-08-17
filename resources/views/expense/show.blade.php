@@ -34,7 +34,7 @@
         </tr>
         <tr>
           <th>Activity Date Time</th>
-          <td>{{ $expense->activityDateTime }}</td>
+          <td>{{ $expense->activityDate }} {{ $expense->activityTime }}</td>
         </tr>
         <tr>
           <th>Receipt</th>

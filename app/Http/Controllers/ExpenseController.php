@@ -55,9 +55,6 @@ class ExpenseController extends Controller
      */
     public function store(ExpenseRequest $request)
     {
-      //Expense::create($request->all());
-      //Session::flash('flash_message', 'Expense Data successfully created');
-      //return redirect('expense')
       $expense = new Expense;
       switch($request->input('category')) {
         case 'Transportation' :
@@ -70,7 +67,8 @@ class ExpenseController extends Controller
           break;
       }
       $expense->costTotal = $request->costTotal;
-      $expense->activityDateTime = $request->activityDateTime;
+      $expense->activityDate = $request->activityDate;
+      $expense->activityTime = $request->activityTime;
       if($request->hasFile('receipt')) {
         $receipt = $request->file('receipt');
         $extension = $receipt->getClientOriginalExtension();
@@ -105,24 +103,57 @@ class ExpenseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Expense $expense)
     {
-        //
+      return view('expense/edit', compact('expense'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\ExpenseRequest $request
+     * @param  Expense $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ExpenseRequest $request, Expense $expense)
     {
-        //
+      switch($request->category) {
+        case 'Transportation' :
+          $expense->transportationFlag = true;
+          $expense->transportationId = $request->transportationId;
+          break;
+        case 'Shopping' :
+          break;
+        case 'Others' :
+          break;
+      }
+      $expense->costTotal = $request->costTotal;
+      $expense->activityDate = $request->activityDate;
+      $expense->activityTime = $request->activityTime;
+      if($request->hasFile('receipt')) {
+        $existed = Storage::disk('receipt')->exists($expense->receipt);
+        if(isset($expense->receipt) && $existed) {
+          $deleted = Storage::disk('receipt')->delete($expense->receipt);
+        }
+        $receipt = $request->file('receipt');
+        $extension = $receipt->getClientOriginalExtension();
+        if($request->file('receipt')->isValid()) {
+          $receipt_name = date('YmdHis') . ".$extension";
+          $upload_path = 'upload/receipts';
+          $request->file('receipt')->move($upload_path, $receipt_name);
+          $expense->receipt = $upload_path . '/' . $receipt_name;
+        }
+      }
+      if($request->filled('remark')) {
+        $expense->remark = $request->remark;
+      }
+      $expense->updated_by = $request->updated_by;
+      $expense->save();
+      Session::flash('flash_message', 'Expense Data successfully edited');
+      return redirect('expense');
     }
 
     /**

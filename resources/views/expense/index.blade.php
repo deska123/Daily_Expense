@@ -35,9 +35,10 @@
                 <td>Others</td>
               @endif
               <td>{{ $expense->costTotal }}</td>
-              <td>{{ $expense->activityDateTime }}</td>
+              <td>{{ $expense->activityDate }} {{ $expense->activityTime }}</td>
               <td>
                 <a href="{{ url('expense/' . $expense->id) }}" class="btn btn-secondary btn-md">Details</a>
+                <a href="{{url('expense/' . $expense->id . '/edit')}}" class="btn btn-info btn-md">Edit</a>
                 <button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#deleteExpenseModal_{{ $expense->id }}">Delete</button>
               </td>
               <div id="deleteExpenseModal_{{ $expense->id }}" class="modal fade" role="dialog">

@@ -1,7 +1,14 @@
 $(document).ready(function(){
-  $("#category").val("");
+  //$("#category").val("");
   $("#transportationSection").hide();
   $("#othersSection").hide();
+  if($("#category").val() == "Transportation") {
+    $("#transportationSection").show();
+  } else if($("#category").val() == "Shopping") {
+
+  } else if($("#category").val() == "Others") {
+
+  }
 
   $("#showDetailsInExpense").click(function(){
     $('#expenseDetailIframe').contents().find('#mainNavbar').hide();

@@ -4,7 +4,21 @@
     @if (!empty($category_list))
       @foreach ($category_list as $category)
         @if ($formType == 'Edit')
-
+          @if ($expense->transportationFlag)
+            @if ($category == 'Transportation')
+              <option value="{{ $category }}" selected>{{ $category }}</option>
+            @endif
+          @elseif ($expense->shoppingFlag)
+            @if ($category == 'Shopping')
+              <option value="{{ $category }}" selected>{{ $category }}</option>
+            @endif
+          @else
+            @if ($category == 'Others')
+              <option value="{{ $category }}" selected>{{ $category }}</option>
+            @else
+              <option value="{{ $category }}">{{ $category }}</option>
+            @endif
+          @endif
         @else
             <option value="{{ $category }}">{{ $category }}</option>
         @endif
@@ -40,16 +54,22 @@
       @if (!empty($transportation_list))
         @foreach ($transportation_list as $transportation)
           <tr>
-          @if ($formType == 'Edit')
-
-          @else
-            <td><input type="radio" name="transportationId" value="{{ $transportation->id }}"></td>
-          @endif
+            @if ($formType == 'Edit')
+              @if (isset($expense->transportationId))
+                @if ($transportation->id == $expense->transportationId)
+                  <td><input type="radio" name="transportationId" value="{{ $transportation->id }}" checked></td>
+                @else
+                  <td><input type="radio" name="transportationId" value="{{ $transportation->id }}"></td>
+                @endif
+              @endif
+            @else
+              <td><input type="radio" name="transportationId" value="{{ $transportation->id }}"></td>
+            @endif
             <td>{{ $transportation->vehicleType->type }}</td>
             <td>{{ $transportation->origin }}</td>
             <td>{{ $transportation->destination }}</td>
             <td>{{ $transportation->fleet }}</td>
-            </tr>
+          </tr>
         @endforeach
       @endif
     </tbody>
@@ -80,9 +100,9 @@
   @enderror
 </div>
 <div class="form-group">
-  <label for="type">Activity Date Time</label>
-  <input type="datetime-local" class="form-control" id="activityDateTime" placeholder="Enter Activity Date Time" name="activityDateTime">
-  @error('activityDateTime')
+  <label for="type">Activity Date</label>
+  <input type="date" class="form-control" id="activityDate" placeholder="Enter Activity Date" name="activityDate" value="{{$formType == 'Edit' ? date('Y-m-d', strtotime($expense->activityDate)) : ''}}">
+  @error('activityDate')
     <div class="alert alert-danger alert-dismissible fade show">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <strong>{{ $message }}</strong>
@@ -90,7 +110,24 @@
   @enderror
 </div>
 <div class="form-group">
-  <label for="receipt">Receipt</label>
+  <label for="type">Activity Time</label>
+  <input type="time" class="form-control" id="activityTime" placeholder="Enter Activity Time" name="activityTime" value="{{$formType == 'Edit' ? $expense->activityTime : ''}}">
+  @error('activityTime')
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @enderror
+</div>
+<div class="form-group">
+  <label for="receipt">
+    Receipt
+    @if ($formType == 'Edit')
+      @if (isset($expense->receipt))
+        <a href="{{ asset($expense->receipt) }}" target="_blank" class="btn btn-warning btn-md">See Receipt File</a>
+      @endif
+    @endif
+  </label>
   <input type="file" class="form-control" id="receipt" name="receipt">
   @error('receipt')
     <div class="alert alert-danger alert-dismissible fade show">
