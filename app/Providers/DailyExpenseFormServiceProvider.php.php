@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Others;
 use App\Transportation;
 use App\Vehicle_Type;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +34,7 @@ class DailyExpenseFormServiceProvider extends ServiceProvider
           'Others'
         ];
         $view->with('category_list', $categoryCollection);
+        $view->with('others_list', Others::all());
         $view->with('transportation_list', Transportation::all());
       });
 

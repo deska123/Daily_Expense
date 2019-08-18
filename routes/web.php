@@ -18,6 +18,9 @@ Route::get('verify', function() {
 });
 
 Route::resource('expense', 'ExpenseController');
+Route::resource('others', 'OthersController');
+Route::resource('goods', 'GoodsController');
+Route::resource('shops', 'ShopsController');
 Route::resource('transportation', 'TransportationController');
 Route::resource('vehicle_type', 'VehicleTypeController');
 

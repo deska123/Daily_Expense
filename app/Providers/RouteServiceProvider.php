@@ -25,6 +25,18 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
+        Route::bind('goods', function($good) {
+          return \App\Goods::findOrFail($good);
+        });
+
+        Route::bind('others', function($other) {
+          return \App\Others::findOrFail($other);
+        });
+
+        Route::bind('shops', function($shop) {
+          return \App\Shops::findOrFail($shop);
+        });
+
         Route::bind('transportation', function($transportation) {
           return \App\Transportation::findOrFail($transportation);
         });

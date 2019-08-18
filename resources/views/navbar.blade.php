@@ -19,6 +19,27 @@
         @endif
       </li>
       <li class="nav-item">
+        @if (!empty($page) && $page == 'goods')
+          <a class="nav-link active" href="{{url('goods')}}">Goods</a>
+        @else
+          <a class="nav-link" href="{{url('goods')}}">Goods</a>
+        @endif
+      </li>
+      <li class="nav-item">
+        @if (!empty($page) && $page == 'shops')
+          <a class="nav-link active" href="{{url('shops')}}">Shops</a>
+        @else
+          <a class="nav-link" href="{{url('shops')}}">Shops</a>
+        @endif
+      </li>
+      <li class="nav-item">
+        @if (!empty($page) && $page == 'others')
+          <a class="nav-link active" href="{{url('others')}}">Others</a>
+        @else
+          <a class="nav-link" href="{{url('others')}}">Others</a>
+        @endif
+      </li>
+      <li class="nav-item">
         @if (!empty($page) && $page == 'expense')
           <a class="nav-link active" href="{{url('expense')}}">Expense</a>
         @else

@@ -30,6 +30,18 @@ class DailyExpenseAppServiceProvider extends ServiceProvider
           $page = 'expense';
         }
 
+        if(Request::segment(1) == 'goods') {
+          $page = 'goods';
+        }
+
+        if(Request::segment(1) == 'others') {
+          $page = 'others';
+        }
+
+        if(Request::segment(1) == 'shops') {
+          $page = 'shops';
+        }
+
         if(Request::segment(1) == 'transportation') {
           $page = 'transportation';
         }

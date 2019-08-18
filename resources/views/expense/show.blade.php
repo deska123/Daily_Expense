@@ -15,7 +15,7 @@
           @if ($expense->transportationFlag)
             <td>
               Transportation&nbsp;&nbsp;
-              <button id="showDetailsInExpense" type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#detailModal">Show Transportation Details</button>
+              <button type="button" class="btn btn-info btn-md showDetailsInExpense" data-toggle="modal" data-target="#detailModal">Show Transportation Details</button>
             </td>
           @elseif ($expense->shoppingFlag)
           <td>
@@ -25,7 +25,7 @@
           @else
           <td>
             Others&nbsp;&nbsp;
-            <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#detailModal">Show Others Details</button>
+            <button type="button" class="btn btn-info btn-md showDetailsInExpense" data-toggle="modal" data-target="#detailModal">Show Others Details</button>
           </td>
           @endif
         <tr>
@@ -83,7 +83,8 @@
         <div class="modal-body">
           @if ($expense->transportationFlag)
             <iframe id="expenseDetailIframe" src="{{ url('transportation/' . $expense->transportationId) }}"></iframe>
-          @elseif ($expense->shoppingFlag)
+          @elseif ($expense->othersFlag)
+            <iframe id="expenseDetailIframe" src="{{ url('others/' . $expense->othersId) }}"></iframe>
           @else
           @endif
         </div>

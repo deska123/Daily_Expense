@@ -57,13 +57,13 @@
             @if ($formType == 'Edit')
               @if (isset($expense->transportationId))
                 @if ($transportation->id == $expense->transportationId)
-                  <td><input type="radio" name="transportationId" value="{{ $transportation->id }}" checked></td>
+                  <td><input type="radio" id="transportationId" name="transportationId" value="{{ $transportation->id }}" checked></td>
                 @else
-                  <td><input type="radio" name="transportationId" value="{{ $transportation->id }}"></td>
+                  <td><input type="radio" id="transportationId" name="transportationId" value="{{ $transportation->id }}"></td>
                 @endif
               @endif
             @else
-              <td><input type="radio" name="transportationId" value="{{ $transportation->id }}"></td>
+              <td><input type="radio" id="transportationId" name="transportationId" value="{{ $transportation->id }}"></td>
             @endif
             <td>{{ $transportation->vehicleType->type }}</td>
             <td>{{ $transportation->origin }}</td>
@@ -75,15 +75,19 @@
     </tbody>
   </table>
 </div>
+<div id="shoppingSection" class="form-group">
+</div>
 <div id="othersSection" class="form-group">
   <label for="othersId">Others</label>
   <select class="form-control" id="othersId" name="othersId">
     @if (!empty($others_list))
       @foreach ($others_list as $other)
         @if ($formType == 'Edit')
-
+          @if ($other->id == $expense->othersId)
+            <option value="{{ $other->id }}" selected>{{ $other->remark }}</option>
+          @endif
         @else
-            <option value="{{ $other->id }}"></option>
+          <option value="{{ $other->id }}">{{ $other->remark }}</option>
         @endif
       @endforeach
     @endif
