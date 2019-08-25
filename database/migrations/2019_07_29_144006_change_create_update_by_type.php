@@ -32,13 +32,13 @@ class ChangeCreateUpdateByType extends Migration
     public function down()
     {
       Schema::table('vehicle_type', function (Blueprint $table) {
-        $table->text()->change();
-        $table->text()->change();
+        $table->text('created_by')->change();
+        $table->text('updated_by')->change();
       });
 
       Schema::table('transportation', function (Blueprint $table) {
-        $table->text()->change();
-        $table->text()->change();
+        $table->text('created_by')->change();
+        $table->text('updated_by')->change();
       });
     }
 }

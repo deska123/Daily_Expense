@@ -13,13 +13,15 @@ class CreateTableVehicleType extends Migration
      */
     public function up()
     {
-      Schema::create('vehicle_type', function (Blueprint $table) {
-        $table->increments('id');
-        $table->text('type');
-        $table->timestamps();
-        $table->text('created_by')->nullable();
-        $table->text('updated_by')->nullable();
-      });
+        if(!Schema::hasTable('vehicle_type')) {
+          Schema::create('vehicle_type', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('type');
+            $table->timestamps();
+            $table->text('created_by')->nullable();
+            $table->text('updated_by')->nullable();
+          });
+        }
     }
 
     /**
@@ -29,6 +31,8 @@ class CreateTableVehicleType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicle_type');
+        if(Schema::hasTable('vehicle_type')) {
+          Schema::dropIfExists('vehicle_type');
+        }
     }
 }

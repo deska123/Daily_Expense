@@ -17,13 +17,14 @@ class CreateTableExpense extends Migration
         Schema::create('expense', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->boolean('transportationFlag')->default(false);
-            $table->bigInteger('transportationId')->default(0);
+            $table->unsignedBigInteger('transportationId')->default(0);
             $table->boolean('shoppingFlag')->default(false);
-            $table->bigInteger('shoppingId')->default(0);
+            $table->unsignedBigInteger('shoppingId')->default(0);
             $table->boolean('othersFlag')->default(false);
-            $table->bigInteger('othersId')->default(0);
+            $table->unsignedBigInteger('othersId')->default(0);
             $table->bigInteger('costTotal');
-            $table->dateTime('activityDateTime');
+            $table->date('activityDate');
+            $table->time('activityTime');
             $table->string('receipt', 200)->nullable();
             $table->text('remark')->nullable();
             $table->timestamps();
