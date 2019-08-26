@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Request;
 
-class DailyExpenseAppServiceProvider extends ServiceProvider
+class DailyExpensePageServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -36,6 +36,14 @@ class DailyExpenseAppServiceProvider extends ServiceProvider
 
         if(Request::segment(1) == 'others') {
           $page = 'others';
+        }
+
+        if(Request::segment(1) == 'shopping') {
+          $page = 'shopping';
+        }
+
+        if(Request::segment(1) == 'shopping_details') {
+          $page = 'shopping_details';
         }
 
         if(Request::segment(1) == 'shops') {

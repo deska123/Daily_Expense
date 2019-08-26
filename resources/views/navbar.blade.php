@@ -33,6 +33,13 @@
         @endif
       </li>
       <li class="nav-item">
+        @if (!empty($page) && $page == 'shopping')
+          <a class="nav-link active" href="{{url('shopping')}}">Shopping</a>
+        @else
+          <a class="nav-link" href="{{url('shopping')}}">Shopping</a>
+        @endif
+      </li>
+      <li class="nav-item">
         @if (!empty($page) && $page == 'others')
           <a class="nav-link active" href="{{url('others')}}">Others</a>
         @else
@@ -62,7 +69,7 @@
     @else
         @if (Auth::user()->level == 'admin')
           <li class="nav-item">
-            @if (!empty($page) && $page == 'users')
+            @if (!is_null(Auth::user()->email_verified_at) && Auth::user()->is_approved == 1 && !empty($page) && $page == 'users')
               <a class="nav-link active" href="{{url('users')}}">Users</a>
             @else
               <a class="nav-link" href="{{url('users')}}">Users</a>
