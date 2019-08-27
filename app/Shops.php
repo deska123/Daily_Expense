@@ -7,12 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shops extends Model
 {
+  protected $table = 'shops';
+
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
    protected $fillable = ['name', 'created_by', 'updated_by'];
+
+   /**
+   * Get the shopping for the blog post.
+   */
+  public function shopping_details()
+  {
+      return $this->hasMany('App\Shopping_Details', 'shopsId');
+  }
 
    /**
   * Get the Created At with specified date format

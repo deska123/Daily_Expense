@@ -5,34 +5,40 @@ namespace App;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
-class Shopping extends Model
+class Shopping_Details extends Model
 {
-    protected $table = 'shopping';
+    protected $table = 'shopping_details';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['created_by', 'updated_by'];
-
-    /**
-     * Get the shopping_details for the shopping.
-     */
-    public function shoppingdetails()
+   /**
+    * Get the goods that own the shopping_details.
+    */
+    public function good()
     {
-      return $this->hasMany('App\Shopping_Details', 'shoppingId');
+      return $this->belongsTo('App\Goods', 'goodsId');
     }
 
-    public function getExpenseTotal()
-    {
-      $shoppingDetails = $this->shoppingdetails;
-      $expenseTotal = 0;
-      foreach($shoppingDetails as $shoppingDetail) {
-        $expenseTotal += $shoppingDetail->getGoodPrice() * $shoppingDetail->qty;
-      }
+    /**
+     * Get the shop that owns the shopping_details.
+     */
+     public function shop()
+     {
+       return $this->belongsTo('App\Shops', 'shopsId');
+     }
 
-      return $expenseTotal;
+   /**
+    * Get the shopping that owns the shopping_details.
+    */
+    public function shopping()
+    {
+      return $this->belongsTo('App\Shopping', 'shoppingId');
+    }
+
+  /**
+    * Get price of each good
+    */
+    public function getGoodPrice()
+    {
+      return $this->good->price;
     }
 
     /**
