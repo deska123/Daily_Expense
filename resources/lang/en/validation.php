@@ -132,6 +132,14 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'goodsId.*' => [
+            'required' => 'One of goods options should be chosen',
+            'integer'   => 'One of goods options should be an integer', 
+        ],
+        'qty.*' => [
+            'required'  => 'One of quantity of good should be filled',
+            'integer'   => 'One of quantity of good should be an integer',
+        ],
     ],
 
     /*
