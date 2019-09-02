@@ -1,5 +1,32 @@
 $(document).ready(function(){
-  //$("#category").val("");
+  /*
+  if (typeof(Storage) !== "undefined") {
+    sessionStorage.goodsSeq = 1;
+  } else {
+    alert("Sorry, your browser does not support web storage...");
+    window.location("shopping");
+  }
+  */
+
+  $("#addGoodRowButton").click(function(){
+    /*
+    if (typeof(Storage) !== "undefined") {
+      var currGoodsSeq = 0;
+      var previousGoodsSeq = 0;
+      if (sessionStorage.goodsSeq) {
+        sessionStorage.goodsSeq = Number(sessionStorage.goodsSeq) + 1;
+        currGoodsSeq = sessionStorage.goodsSeq;
+        previousGoodsSeq = currGoodsSeq - 1
+      }
+
+    } else {
+      alert("Sorry, your browser does not support web storage...");
+      window.location("shopping");
+    }
+    */
+    $("#goodsShoppingContent").append($("#defaultGoodsRow").clone());
+  });
+
   $("#transportationSection").hide();
   $("#shoppingSection").hide();
   $("#othersSection").hide();
@@ -11,10 +38,33 @@ $(document).ready(function(){
     $("#othersSection").show();
   }
 
-  $(".showDetailsInExpense").click(function(){
-    $('#expenseDetailIframe').contents().find('#mainNavbar').hide();
-    $('#expenseDetailIframe').contents().find('#backToTransportationListButton').hide();
-    $('#expenseDetailIframe').contents().find('#backToOthersListButton').hide();
+  $(".showShoppingDetailsInExpense_Create").click(function(){
+    var id_arr = $(this).attr('id').split("_");
+    setTimeout(function() {
+      $('#shoppingExpenseDetailsIframe_' + id_arr[1]).contents().find('#mainNavbar').hide();
+      $('#shoppingExpenseDetailsIframe_' + id_arr[1]).contents().find('#backToShoppingListButton').hide();
+    }, 500);
+  });
+
+  $("#showTransportationDetailsInExpense").click(function(){
+    setTimeout(function() {
+      $('#transportationExpenseDetailsIframe').contents().find('#mainNavbar').hide();
+      $('#transportationExpenseDetailsIframe').contents().find('#backToTransportationListButton').hide();
+    }, 500);
+  });
+
+  $("#showShoppingDetailsInExpense").click(function(){
+    setTimeout(function() {
+      $('#shoppingExpenseDetailsIframe').contents().find('#mainNavbar').hide();
+      $('#shoppingExpenseDetailsIframe').contents().find('#backToShoppingListButton').hide();
+    }, 500);
+  });
+
+  $("#showOthersDetailsInExpense").click(function(){
+    setTimeout(function() {
+      $('#othersExpenseDetailsIframe').contents().find('#mainNavbar').hide();
+      $('#othersExpenseDetailsIframe').contents().find('#backToOthersListButton').hide();
+    }, 500);
   });
 
   $("#category").change(function(){
@@ -36,5 +86,5 @@ $(document).ready(function(){
       $("#othersSection").hide();
       $("#shoppingSection").hide();
     }
-  })
+  });
 });
