@@ -33,6 +33,10 @@ class RouteServiceProvider extends ServiceProvider
           return \App\Others::findOrFail($other);
         });
 
+        Route::bind('shopping', function($shopping) {
+          return \App\Shopping::findOrFail($shopping);
+        });
+
         Route::bind('shops', function($shop) {
           return \App\Shops::findOrFail($shop);
         });
