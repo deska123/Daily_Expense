@@ -7,7 +7,8 @@
       <strong>{{$errors->first('name')}}</strong>
     </div>
   @enderror
-
+</div>
+<div class="form-group">
   @if ($formType == 'Edit')
     <input type="hidden" id="updated_by" name="updated_by" value="{{ Auth::id() }}">
   @else
