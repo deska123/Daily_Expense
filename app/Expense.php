@@ -10,6 +10,28 @@ class Expense extends Model
     protected $table = 'expense';
 
   /**
+	 * Get Expense Data based on Year
+  	*
+  	* @param string
+    * @return Expense
+  	*/
+    public function scopeYear($query, $year)
+    {
+        return $query->where('year', $year);
+    }
+
+  /**
+	 * Get Expense Data based on Month
+  	*
+  	* @param string
+    * @return Expense
+  	*/
+    public function scopeMonth($query, $month)
+    {
+        return $query->where('month', $month);
+    }
+
+  /**
 	 * Get the Activity Date with specified date format
 	 *
 	 * @param integer
