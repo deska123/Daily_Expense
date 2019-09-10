@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Expense;
 use App\Others;
 use App\Http\Requests\OthersRequest;
 use Session;
@@ -90,22 +91,28 @@ class OthersController extends Controller
      */
     public function update(OthersRequest $othersRequest, Others $other)
     {
-      $other->fill($othersRequest->except(['_token', '_method']));
-      $other->save();
-      Session::flash('flash_message', 'Others Data with ID : ' . $other->id . ' successfully edited');
-      return redirect('others');
+        $other->fill($othersRequest->except(['_token', '_method']));
+        $other->save();
+        Session::flash('flash_message', 'Others Data with ID : ' . $other->id . ' successfully edited');
+        return redirect('others');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Others $other
+     * @param  App\Others $other
      * @return \Illuminate\Http\Response
      */
     public function destroy(Others $other)
     {
-      $other->delete();
-      Session::flash('flash_message', 'Others Data successfully deleted');
-      return redirect('others');
+        $count = Expense::where('othersFlag', true)->whereNotNull('othersId')->where('othersId', $other->id)->count();
+        if($count > 0) {
+          $expense = Expense::where('othersFlag', true)->where('othersId', $other->id)->firstOrFail();
+          $expense->delete();
+        }
+
+        $other->delete();
+        Session::flash('flash_message', 'Others Data successfully deleted');
+        return redirect('others');
     }
 }
