@@ -175,6 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\DailyExpensePageServiceProvider::class,
         App\Providers\DailyExpenseFormServiceProvider::class,
+        App\Providers\DailyExpenseNonFormServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
